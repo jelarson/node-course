@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const friendsController = require('./controllers/friends.controller');
 const messagesController = require('./controllers/messages.controller');
@@ -16,7 +17,7 @@ app.use((req, res, next) => {
     console.log(req.method + ' ' + req.url + ' ' + delta + 'ms');
 })
 
-app.use('/site', express.static('public'));
+app.use('/site', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // routes
