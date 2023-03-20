@@ -6,6 +6,9 @@ const messagesRouter = require('./routes/messages.router.js');
 
 const app = express();
 
+app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+
 const PORT = 3000;
 
 // middleware
@@ -21,9 +24,16 @@ app.use('/site', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // routes
-app.get('/', (req, res) => {
-    res.send('Hello');
+app.get('/',  (req, res) => {
+    res.render('index', {
+        title: 'My Friends are very clever!',
+        caption: 'Rocket Ship',
+    })
 })
+
+// app.get('/', (req, res) => {
+//     res.send('Hello');
+// })
 
 // mounting routers
 app.use('/friends', friendsRouter);
